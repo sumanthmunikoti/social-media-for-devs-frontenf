@@ -2,6 +2,7 @@ import { Component } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import DashboardContainer from "./Dashboard/DashboardContainer";
 import LandingComponent from "./Component/LandingComponent";
+import SignInComponent from "./SignIn/SignInComponent";
 
 class SocialMediaManagerComponent extends Component {
     render() {
@@ -12,7 +13,6 @@ class SocialMediaManagerComponent extends Component {
                     <Routes>
                         <Route
                             exact path = "/dashboard"
-                            
                             element={<DashboardContainer/>}
                         >
                         </Route>
@@ -20,6 +20,12 @@ class SocialMediaManagerComponent extends Component {
                         <Route
                             exact path="/"
                             element={<LandingComponent/>}
+                        >
+                        </Route>
+
+                        <Route
+                            exact path="/login"
+                            element={<SignInComponent/>}
                         >
                         </Route>
                     </Routes>

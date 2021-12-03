@@ -12,7 +12,7 @@ class NavBarComponent extends Component {
         return (
             <Navbar bg="dark">
                 <Container>
-                <Nav.Link href="/socmed-client/login">Login</Nav.Link>
+                <Nav.Link href="/login">Login</Nav.Link>
                 </Container>
             </Navbar>
 
