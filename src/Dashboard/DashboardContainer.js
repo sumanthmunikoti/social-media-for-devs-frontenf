@@ -1,5 +1,5 @@
 import React from "react";
-import ExperienceTableComponent from "./ExperienceTableComponent";
+// import ExperienceTableComponent from "./ExperienceTableComponent";
 import { API_URL } from "../common/constants";
 
 class DashboardContainer extends React.Component {
@@ -16,11 +16,15 @@ class DashboardContainer extends React.Component {
             }))
     }
 
+    // componentDidMount() {
+    //     console.log("Hello")
+    // }
+
     render() {
         return (
             <div>
-                
-                <div className="dashboard-div">
+                Hi
+                {/* <div className="dashboard-div">
                     <h2 className="large">Dashboard</h2>
                     <p className="lead">
                         <i className="fas fa-child"> </i>
@@ -30,15 +34,15 @@ class DashboardContainer extends React.Component {
 
                 <br />
 
-                <div className="dashboard-div">
+                {/* <div className="dashboard-div">
                     <h2 className="my-2">Experience Credentials</h2>
                     <ExperienceTableComponent
                         experienceId={this.props.experienceId}
                         user={this.state.user}
                     />
-                </div>
+                </div> */}
                 <br />
-                <br />
+                <br /> 
 
             </div>
         )
