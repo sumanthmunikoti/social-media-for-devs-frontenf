@@ -8,6 +8,7 @@ class DashboardContainer extends React.Component {
     }
 
     componentDidMount() {
+        
         fetch(`${API_URL}/profile/me`)
             .then(response => response.json())
             .then(results => this.setState({

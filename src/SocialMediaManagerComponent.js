@@ -1,31 +1,34 @@
-import { Component } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import DashboardContainer from "./Dashboard/DashboardContainer";
 import LandingComponent from "./Component/LandingComponent";
 import SignInComponent from "./SignIn/SignInComponent";
+import { createBrowserHistory } from 'history';
 
-class SocialMediaManagerComponent extends Component {
-    render() {
+const history = createBrowserHistory();
+
+function SocialMediaManagerComponent () {
+    
         return (
             <div>
-                
-                <Router>
+
+                <Router history={history}>
+                    
                     <Routes>
                         <Route
-                            exact path = "/dashboard"
-                            element={<DashboardContainer/>}
+                            exact path="/dashboard"
+                            element={<DashboardContainer />}
                         >
                         </Route>
 
                         <Route
                             exact path="/"
-                            element={<LandingComponent/>}
+                            element={<LandingComponent />}
                         >
                         </Route>
 
                         <Route
                             exact path="/login"
-                            element={<SignInComponent/>}
+                            element={<SignInComponent />}
                         >
                         </Route>
                     </Routes>
@@ -33,6 +36,6 @@ class SocialMediaManagerComponent extends Component {
             </div>
         )
     }
-}
+
 
 export default SocialMediaManagerComponent
