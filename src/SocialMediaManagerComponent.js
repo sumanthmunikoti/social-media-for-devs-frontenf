@@ -7,7 +7,7 @@ import { createBrowserHistory } from 'history';
 const history = createBrowserHistory();
 
 function SocialMediaManagerComponent () {
-    
+
         return (
             <div>
 

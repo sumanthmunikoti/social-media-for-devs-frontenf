@@ -1,25 +1,32 @@
-import React from "react";
-// import ExperienceTableComponent from "./ExperienceTableComponent";
-import { API_URL } from "../common/constants";
 
-class DashboardContainer extends React.Component {
+// import ExperienceTableComponent from "./ExperienceTableComponent";
+import { Component } from "react";
+import { API_URL } from "../common/constants";
+import { connect } from 'react-redux'
+
+class DashboardContainer extends Component {
+
     state = {
-        user: { name: '' }
+        user: {}
     }
 
     componentDidMount() {
-        
-        fetch(`${API_URL}/profile/me`)
+        fetch(`${API_URL}/profile/me`, {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId: this.props.userId
+            })
+        })
             .then(response => response.json())
             .then(results => this.setState({
                 user: results.user
-                
-            }))
-    }
 
-    // componentDidMount() {
-    //     console.log("Hello")
-    // }
+            }))
+            
+    }
 
     render() {
         return (
@@ -43,11 +50,19 @@ class DashboardContainer extends React.Component {
                     />
                 </div> */}
                 <br />
-                <br /> 
+                <br />
 
             </div>
         )
     }
 }
 
-export default DashboardContainer
+//fetch userId from redux store
+const mapStateToProps = (state) => {
+    const { id } = state
+    return {
+        userId: id
+    }
+}
+
+export default connect(mapStateToProps)(DashboardContainer)
