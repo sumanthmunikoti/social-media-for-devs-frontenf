@@ -3,6 +3,7 @@
 import { Component } from "react";
 import { API_URL } from "../common/constants";
 import { connect } from 'react-redux'
+import PhoneNumberComponent from "./PhoneNumberComponent";
 
 class DashboardContainer extends Component {
 
@@ -23,33 +24,14 @@ class DashboardContainer extends Component {
             .then(response => response.json())
             .then(results => this.setState({
                 user: results.user
-
             }))
-            
     }
 
     render() {
         return (
             <div>
                 Hi
-                {/* <div className="dashboard-div">
-                    <h2 className="large">Dashboard</h2>
-                    <p className="lead">
-                        <i className="fas fa-child"> </i>
-                        Welcome, {this.state.user.name}</p>
-                </div>
-                
-
-                <br />
-
-                {/* <div className="dashboard-div">
-                    <h2 className="my-2">Experience Credentials</h2>
-                    <ExperienceTableComponent
-                        experienceId={this.props.experienceId}
-                        user={this.state.user}
-                    />
-                </div> */}
-                <br />
+                <PhoneNumberComponent />
                 <br />
 
             </div>
