@@ -4,6 +4,7 @@ import { Component } from "react";
 import { API_URL } from "../common/constants";
 import { connect } from 'react-redux'
 import PhoneNumberComponent from "./PhoneNumberComponent";
+import ExperienceTableComponent from "./ExperienceTableComponent";
 
 class DashboardContainer extends Component {
 
@@ -30,10 +31,17 @@ class DashboardContainer extends Component {
     render() {
         return (
             <div>
-                Hi
+
                 <PhoneNumberComponent />
                 <br />
 
+                <div className="dashboard-div">
+                    <h2 className="my-2">Experience Credentials</h2>
+                    <ExperienceTableComponent
+                        experienceId={this.props.experienceId}
+                        user={this.state.user}
+                    />
+                </div>
             </div>
         )
     }

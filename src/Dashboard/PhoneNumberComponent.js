@@ -46,29 +46,7 @@ class phoneNumberComponent extends React.Component {
     }
 
     componentDidMount = async () => {
-        // this.unFormatPhoneNumber('(666) 555-4454')
-        await this.setState({
-            dashboardToken: localStorage.getItem('token')
-        })
-        await this.getPhoneNumber();
-    }
-
-    getPhoneNumber = () => {
-        fetch(
-            `${API_URL}/profile/me`, {
-            headers: {
-                'x-auth-token': this.state.dashboardToken
-            }
-        }
-        )
-            .then(response => response.json())
-            .then(results => this.setState({
-                phoneNumber: results.phone !== "" ? results.phone
-                    : null
-            }))
-            .then(() => this.setState({
-                p: this.formatPhoneNumber(this.state.phoneNumber)
-            }))
+        
     }
 
     changeEdit = () => {
