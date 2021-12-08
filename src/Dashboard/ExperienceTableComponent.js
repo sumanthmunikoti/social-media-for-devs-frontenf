@@ -10,11 +10,17 @@ class ExperienceTableComponent extends Component {
         inputTitle: '',
         inputFrom: '',
         inputTo: '',
-        inputDescription: ''
+        inputDescription: '',
+        current: false
     }
 
     componentDidMount = async () => {
         this.getExperience()
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.experienceId !== this.props.experienceId)
+            this.getExperience()
     }
 
     getExperience = () => {
@@ -27,15 +33,21 @@ class ExperienceTableComponent extends Component {
                 userId: this.props.userId
             })
         })
-            .then(response => response.json())
-            .then(results => this.setState({
-                experiences: results.experience,
-                inputCompany: '',
-                inputTitle: '',
-                inputFrom: '',
-                inputDescription: '',
-                inputTo: ''
-            }))
+            .then(response =>
+                // console.log("response:", response.json())
+                response.json()
+            )
+            .then(results =>
+                // console.log(results[0].experience)
+                this.setState({
+                    experiences: results[0].experience,
+                    inputCompany: '',
+                    inputTitle: '',
+                    inputFrom: '',
+                    inputDescription: '',
+                    inputTo: ''
+                })
+            )
     }
 
     addExperience = () => {
@@ -63,103 +75,154 @@ class ExperienceTableComponent extends Component {
 
     render() {
         return (
-            <div className="list-group-item">
-                <div className="row">
-                    <div className="col-lg-2">
-                        <input
-                            placeholder="Input Company Here"
-                            onChange={async (e) =>
-                                await this.setState({
-                                    inputCompany: e.target.value
-                                }
-                                )}
-                            value={this.state.inputCompany}
-                        />
+            <div>
+
+                <div className="list-group-item">
+                    <div className="row">
+                        {/*<ul className="row experience-ul">*/}
+                        <div className="col-lg-2">Company</div>
+                        <div className="hide-sm col-lg-2">Title</div>
+                        <div className="hide-sm col-lg-2">Description</div>
+                        <div className="hide-sm col-lg-2">From</div>
+                        <div className="hide-sm col-lg-2">To</div>
+                        {/*</ul>*/}
                     </div>
-                    <div className="col-lg-2">
-                        <input
-                            placeholder="Input Title Here"
-                            onChange={async (e) =>
-                                await this.setState({
-                                    inputTitle: e.target.value
-                                }
-                                )}
-                            value={this.state.inputTitle}
-                        />
-                    </div>
-                    <div className="col-lg-2">
-                        <textarea
-                            placeholder="Input Description Here"
-                            onChange={async (e) =>
-                                await this.setState({
-                                    inputDescription: e.target.value
-                                }
-                                )}
-                            value={this.state.inputDescription}
-                        />
-                    </div>
-                    <div className="col-lg-2">
-                        <input
-                            type="date"
-                            className="nav-item ml-auto form-control"
-                            placeholder="From..."
-                            onChange={async (e) =>
-                                await this.setState({
-                                    inputFrom: e.target.value
-                                }
-                                )}
-                            value={this.state.inputFrom}
-                        />
-                    </div>
-                    <div>
-                        {this.state.current &&
+                </div>
+
+                {
+                    this.state.experiences &&
+                    this.state.experiences.map(experience => <div className="list-group-item active">
+                        <div className="row" key={experience._id}>
+                            <div className="col-lg-2">
+
+                                {experience.company}
+
+                            </div>
+                            <div className="hide-sm col-lg-2">
+
+                                {experience.title}
+
+                            </div>
+                            <div className="hide-sm col-lg-2">
+
+                                {experience.description}
+
+                            </div>
+                            <div className="hide-sm col-lg-2">
+
+                                {experience.from}
+
+                            </div>
+                            <div className="hide-sm col-lg-2">
+
+                                {experience.to}
+
+                            </div>
+                        </div>
+                    </div>)
+                }
+
+
+
+
+                <div className="list-group-item">
+                    <div className="row">
+                        <div className="col-lg-2">
                             <input
-                                value={"Present"}
-                                readOnly={"true"}
-                                disabled={"true"}
-                            />
-                        }
-                        {!this.state.current &&
-                            <input
-                                type="date"
-                                placeholder="To"
+                                placeholder="Input Company Here"
                                 onChange={async (e) =>
                                     await this.setState({
-                                        inputTo: e.target.value
+                                        inputCompany: e.target.value
                                     }
                                     )}
-                                value={this.state.inputTo}
+                                value={this.state.inputCompany}
                             />
-                        }
-                    </div>
-                    <div className="col-lg-1">
-
-                        <input
-                            type="checkbox"
-                            onChange={async (e) =>
-                                await this.setState({
-                                    current: !this.state.current
-                                })
+                        </div>
+                        <div className="col-lg-2">
+                            <input
+                                placeholder="Input Title Here"
+                                onChange={async (e) =>
+                                    await this.setState({
+                                        inputTitle: e.target.value
+                                    }
+                                    )}
+                                value={this.state.inputTitle}
+                            />
+                        </div>
+                        <div className="col-lg-2">
+                            <textarea
+                                placeholder="Input Description Here"
+                                onChange={async (e) =>
+                                    await this.setState({
+                                        inputDescription: e.target.value
+                                    }
+                                    )}
+                                value={this.state.inputDescription}
+                            />
+                        </div>
+                        <div className="col-lg-2">
+                            <input
+                                type="date"
+                                className="nav-item ml-auto form-control"
+                                placeholder="From..."
+                                onChange={async (e) =>
+                                    await this.setState({
+                                        inputFrom: e.target.value
+                                    }
+                                    )}
+                                value={this.state.inputFrom}
+                            />
+                        </div>
+                        <div>
+                            {this.state.current &&
+                                <input
+                                    value={"Present"}
+                                    readOnly={"true"}
+                                    disabled={"true"}
+                                />
                             }
-
-                            id="vehicle1" name="vehicle1"
-                            value={this.state.current} />
-
-                        <label htmlFor="vehicle1"> Present </label>
-                    </div>
-
-                    <div className="col-lg-1">
-                        <button
-                            onClick={() => {
-                                this.addExperience()
+                            {!this.state.current &&
+                                <input
+                                    type="date"
+                                    placeholder="To"
+                                    onChange={async (e) =>
+                                        await this.setState({
+                                            inputTo: e.target.value
+                                        }
+                                        )}
+                                    value={this.state.inputTo}
+                                />
                             }
-                            }
-                            className="btn btn-danger">
-                            <i className="fas fa-plus-circle fa-lg"> </i>
+                        </div>
+                        <div className="col-lg-1">
 
-                        </button>
+                            <input
+                                type="checkbox"
+                                onChange={async (e) =>
+                                    await this.setState({
+                                        current: !this.state.current
+                                    })
+                                }
+
+                                id="vehicle1" name="vehicle1"
+                                value={this.state.current} />
+
+                            <label htmlFor="vehicle1"> Present </label>
+                        </div>
+
+                        <div className="col-lg-1">
+                            <button
+                                className="btn btn-danger"
+                                onClick={() => {
+                                    this.addExperience()
+                                }
+                                }
+                            >
+                                Add Experience
+                            </button>
+                        </div>
+
                     </div>
-
                 </div>
             </div>
 
