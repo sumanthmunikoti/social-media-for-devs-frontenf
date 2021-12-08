@@ -91,7 +91,7 @@ class ExperienceTableComponent extends Component {
 
                 {
                     this.state.experiences &&
-                    this.state.experiences.map(experience => <div className="list-group-item active">
+                    this.state.experiences.map(experience => <div className="list-group-item">
                         <div className="row" key={experience._id}>
                             <div className="col-lg-2">
 
@@ -122,16 +122,13 @@ class ExperienceTableComponent extends Component {
                     </div>)
                 }
 
-
-
-
                 <div className="list-group-item">
                     <div className="row">
                         <div className="col-lg-2">
                             <input
                                 placeholder="Input Company Here"
                                 onChange={async (e) =>
-                                    await this.setState({
+                                    this.setState({
                                         inputCompany: e.target.value
                                     }
                                     )}
@@ -142,7 +139,7 @@ class ExperienceTableComponent extends Component {
                             <input
                                 placeholder="Input Title Here"
                                 onChange={async (e) =>
-                                    await this.setState({
+                                    this.setState({
                                         inputTitle: e.target.value
                                     }
                                     )}
@@ -153,7 +150,7 @@ class ExperienceTableComponent extends Component {
                             <textarea
                                 placeholder="Input Description Here"
                                 onChange={async (e) =>
-                                    await this.setState({
+                                    this.setState({
                                         inputDescription: e.target.value
                                     }
                                     )}
@@ -163,10 +160,10 @@ class ExperienceTableComponent extends Component {
                         <div className="col-lg-2">
                             <input
                                 type="date"
-                                className="nav-item ml-auto form-control"
+                                // className="nav-item ml-auto form-control"
                                 placeholder="From..."
                                 onChange={async (e) =>
-                                    await this.setState({
+                                    this.setState({
                                         inputFrom: e.target.value
                                     }
                                     )}
@@ -203,8 +200,6 @@ class ExperienceTableComponent extends Component {
                                         current: !this.state.current
                                     })
                                 }
-
-                                id="vehicle1" name="vehicle1"
                                 value={this.state.current} />
 
                             <label htmlFor="vehicle1"> Present </label>
@@ -215,9 +210,7 @@ class ExperienceTableComponent extends Component {
                                 className="btn btn-danger"
                                 onClick={() => {
                                     this.addExperience()
-                                }
-                                }
-                            >
+                                }}>
                                 Add Experience
                             </button>
                         </div>
@@ -228,7 +221,6 @@ class ExperienceTableComponent extends Component {
 
         )
     }
-
 }
 
 //fetch userId from redux store

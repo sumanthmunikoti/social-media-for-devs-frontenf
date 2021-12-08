@@ -12,7 +12,8 @@ class NavBarComponent extends Component {
         return (
             <Navbar bg="dark">
                 <Container>
-                <Nav.Link href="/login">Login</Nav.Link>
+                    <Nav.Link href="/login">Login</Nav.Link>
+                    <Nav.Link href="/profiles">Devs</Nav.Link>
                 </Container>
             </Navbar>
 

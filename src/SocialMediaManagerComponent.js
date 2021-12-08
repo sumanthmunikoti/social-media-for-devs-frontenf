@@ -3,6 +3,7 @@ import DashboardContainer from "./Dashboard/DashboardContainer";
 import LandingComponent from "./Component/LandingComponent";
 import SignInComponent from "./SignIn/SignInComponent";
 import { createBrowserHistory } from 'history';
+import ProfilesContainer from "./Profile/ProfilesContainer";
 
 const history = createBrowserHistory();
 
@@ -31,6 +32,13 @@ function SocialMediaManagerComponent () {
                             element={<SignInComponent />}
                         >
                         </Route>
+
+                        <Route
+                            exact path="/profiles"
+                            element={<ProfilesContainer />}
+                        >
+                        </Route>
+
                     </Routes>
                 </Router>
             </div>
