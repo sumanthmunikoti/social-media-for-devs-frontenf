@@ -90,6 +90,7 @@ class NeoPosts extends Component {
                     }
                     {this.state.posts && this.state.posts.map(post => (
                         <NeoPostItem
+                            _id={post._id}
                             userId={this.props.userId}
                             showBtns={true}
                             like={this.handleLike}
