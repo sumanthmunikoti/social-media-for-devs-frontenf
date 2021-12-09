@@ -9,7 +9,8 @@ class NeoPosts extends Component {
 
     state = {
         posts: [],
-        postStatus: false
+        postStatus: false,
+        text: ''
     }
 
     componentDidMount = async () => {
@@ -21,11 +22,22 @@ class NeoPosts extends Component {
     }
 
     handleChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({ text: e.target.value });
     };
 
-    submitPost = () => {
-
+    submitPost = async () => {
+        await fetch(`${API_URL}/posts`, {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(
+                { 
+                    userId: this.props.userId,
+                    text: this.state.text 
+                }
+            )
+        })
     }
 
     handleLike = () => {
