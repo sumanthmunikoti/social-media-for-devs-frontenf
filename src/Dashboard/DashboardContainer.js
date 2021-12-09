@@ -5,6 +5,7 @@ import { API_URL } from "../common/constants";
 import { connect } from 'react-redux'
 import PhoneNumberComponent from "./PhoneNumberComponent";
 import ExperienceTableComponent from "./ExperienceTableComponent";
+import NavBarComponent from "../Component/NavBar/NavBarComponent";
 
 class DashboardContainer extends Component {
 
@@ -31,7 +32,7 @@ class DashboardContainer extends Component {
     render() {
         return (
             <div>
-
+                <NavBarComponent />
                 <PhoneNumberComponent />
                 <br />
 
@@ -50,6 +51,7 @@ class DashboardContainer extends Component {
 //fetch userId from redux store
 const mapStateToProps = (state) => {
     const { id } = state
+    console.log("state in db", state)
     return {
         userId: id
     }
