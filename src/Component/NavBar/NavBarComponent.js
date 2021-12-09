@@ -14,6 +14,7 @@ class NavBarComponent extends Component {
                 <Container>
                     <Nav.Link href="/login">Login</Nav.Link>
                     <Nav.Link href="/profiles">Devs</Nav.Link>
+                    <Nav.Link href="/posts">Posts</Nav.Link>
                 </Container>
             </Navbar>
 
