@@ -32,15 +32,53 @@ class NeoPosts extends Component {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(
-                { 
+                {
                     userId: this.props.userId,
-                    text: this.state.text 
+                    text: this.state.text
                 }
             )
         })
+
+        const postsData = await axios.get(`${API_URL}/posts`)
+
+        this.setState({
+            posts: postsData.data,
+            text: '',
+            postStatus: true
+        })
+
+        setTimeout(function () {
+            this.setState({ postStatus: false });
+        }.bind(this), 3000);
+
     }
 
-    handleLike = () => {
+    handleLike = async (id) => {
+        await fetch(`${API_URL}/posts/like/${id}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    userId: this.props.userId,
+                }
+            )
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (Array.isArray(res)) {
+                    window.alert('Liked post')
+                }
+                else {
+                    window.alert('Post already liked before')
+                }
+            })
+
+        const postsData = await axios.get(`${API_URL}/posts`)
+        this.setState({
+            posts: postsData.data
+        })
 
     }
 

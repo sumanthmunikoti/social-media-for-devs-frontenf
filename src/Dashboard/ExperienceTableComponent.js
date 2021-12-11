@@ -11,7 +11,14 @@ class ExperienceTableComponent extends Component {
         inputFrom: '',
         inputTo: '',
         inputDescription: '',
-        current: false
+        current: false,
+
+        updateCompany: '',
+        updateTitle: '',
+        updateDescription: '',
+        updateTo: '',
+        updateFrom: '',
+        updateCurrent: ''
     }
 
     componentDidMount = async () => {
@@ -73,6 +80,21 @@ class ExperienceTableComponent extends Component {
             })
     }
 
+    deleteExperience = (id) => {
+        fetch(`${API_URL}/profile/experience/${id}`, {
+            method: "DELETE",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId: this.props.userId
+            })
+        })
+            .then(response => {
+                this.getExperience()
+            })
+    }
+
     render() {
         return (
             <div>
@@ -118,6 +140,36 @@ class ExperienceTableComponent extends Component {
                                 {experience.to}
 
                             </div>
+
+                            <div className="hide-sm col-lg-2">
+                                <button
+                                    className="btn btn-danger edit-button"
+                                    onClick={async () => {
+                                        await this.setState({
+                                            updateCompany: experience.company,
+                                            updateTitle: experience.title,
+                                            updateDescription: experience.description,
+                                            updateTo: experience.to,
+                                            updateFrom: experience.from,
+                                            updateCurrent: experience.current
+                                        })
+                                    }}
+                                >
+
+                                    <i className="far fa-edit"
+                                    > </i>
+                                </button>
+                                <button
+                                    className="btn btn-danger"
+                                    onClick={() => this.deleteExperience(experience._id)}
+                                >
+                                        {console.log("expid",  experience._id)}
+                                    <i className="far fa-trash-alt"> </i>
+
+                                </button>
+                            </div>
+
+
                         </div>
                     </div>)
                 }
