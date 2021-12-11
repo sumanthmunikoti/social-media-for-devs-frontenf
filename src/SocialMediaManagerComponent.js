@@ -5,6 +5,7 @@ import SignInComponent from "./SignIn/SignInComponent";
 import { createBrowserHistory } from 'history';
 import ProfilesContainer from "./Profile/ProfilesContainer";
 import NeoPosts from './Post/NeoPosts';
+import NeoPostDetail from './Post/NeoPostDetail';
 
 const history = createBrowserHistory();
 
@@ -44,6 +45,17 @@ function SocialMediaManagerComponent() {
                         exact path="/posts"
                         element={<NeoPosts />} >
                     </Route>
+
+                    <Route
+                        exact path="/detailedPosts"
+                        // element={(props) => <NeoPostDetail {...props}/>}
+                        element={<NeoPostDetail />} 
+                        >
+                    </Route>
+
+                    {/* <Route path= "/posts/:id">
+                        <NeoPostDetail />
+                    </Route> */}
 
                 </Routes>
             </Router>

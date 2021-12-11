@@ -66,14 +66,6 @@ class NeoPosts extends Component {
             )
         })
             .then(res => res.json())
-            .then(res => {
-                if (Array.isArray(res)) {
-                    window.alert('Liked post')
-                }
-                else {
-                    window.alert('Post already liked before')
-                }
-            })
 
         const postsData = await axios.get(`${API_URL}/posts`)
         this.setState({
@@ -82,7 +74,24 @@ class NeoPosts extends Component {
 
     }
 
-    handleUnlike = () => {
+    handleUnlike = async (id) => {
+        await fetch(`${API_URL}/posts/unlike/${id}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    userId: this.props.userId,
+                }
+            )
+        })
+            .then(res => res.json())
+
+        const postsData = await axios.get(`${API_URL}/posts`)
+        this.setState({
+            posts: postsData.data
+        })
 
     }
 
@@ -134,10 +143,7 @@ class NeoPosts extends Component {
                             </button>
                         </form>
                     </div>
-                    {
-                        this.state.posts &&
-                        this.state.posts.map(post => console.log(post))
-                    }
+                    
                     {this.state.posts && this.state.posts.map(post => (
                         <NeoPostItem
                             _id={post._id}
@@ -166,7 +172,6 @@ class NeoPosts extends Component {
 //fetch userId from redux store
 const mapStateToProps = (state) => {
     const { id } = state
-    console.log("userId in Neoposts", state)
     return {
         userId: id
     }

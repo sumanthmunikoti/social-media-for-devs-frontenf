@@ -1,7 +1,7 @@
 import { Component, Fragment } from "react";
 import { API_URL } from "../common/constants";
 import Moment from 'react-moment';
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default class NeoPostItem extends Component {
 
@@ -66,12 +66,26 @@ export default class NeoPostItem extends Component {
                                 >
                                     <i className='fa fa-thumbs-down' />
                                 </button>}
-                            {this.props.showBtns && <button className='btn btn-primary'>
-                                Comment {this.state.showDelete ?
-                                    <span>{this.props.comments.length > 0 &&
-                                        <span>{this.props.comments.length}</span>}</span>
-                                    : null}
-                            </button>}
+
+                            {
+                                this.props.showBtns &&
+                                // <Link to={{
+                                //     pathname: '/detailedPosts',
+                                //     state: {
+                                //         id: this.props._id
+                                //     }
+                                // }} >
+
+                                <Link to="/detailedPosts" state={{id : this.props._id}}>
+                                {/* <Link to={"/posts/" + this.props._id}> */}
+
+                                    <button className='btn btn-primary'>
+                                        Comment {this.state.showDelete ?
+                                            <span>{this.props.comments.length > 0 &&
+                                                <span>{this.props.comments.length}</span>}</span>
+                                            : null}
+                                    </button>
+                                </Link>}
                             {
                                 this.state.currentUser !== undefined &&
                                 this.props.id === this.state.currentUser._id &&
