@@ -76,7 +76,10 @@ export default class NeoPostItem extends Component {
                                 //     }
                                 // }} >
 
-                                <Link to="/detailedPosts" state={{id : this.props._id}}>
+                                <Link to="/detailedPosts" state={{
+                                    id : this.props._id,
+                                    userId: this.props.userId
+                                    }}>
                                 {/* <Link to={"/posts/" + this.props._id}> */}
 
                                     <button className='btn btn-primary'>
