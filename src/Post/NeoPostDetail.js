@@ -4,7 +4,7 @@ import { API_URL } from "../common/constants";
 import NavBarComponent from "../Component/NavBar/NavBarComponent";
 import { useLocation, Link } from "react-router-dom";
 import NeoPostItem from "./NeoPostItem";
-
+import CommentItem from "./CommentItem";
 
 export default function NeoPostDetail() {
 
@@ -15,19 +15,14 @@ export default function NeoPostDetail() {
 
     const location = useLocation()
     console.log("locs", location.state)
-    
+
     let id = ''
     let userId = ''
-    
+
     if (location.state !== null) {
         id = location.state.id
         userId = location.state.userId
-    } 
-
-    // const id = location.state.id
-    // const userId = location.state.userId
-
-
+    }
 
     useEffect(() => {
 
@@ -93,15 +88,15 @@ export default function NeoPostDetail() {
                             onClick={() => handlePostComponent(comment)} />
                     </form>
 
-                    {/* {this.state.comments && this.state.comments.length > 0 && this.state.comments.map(com => (
+                    {comments && comments.length > 0 && comments.map(com => (
                         <CommentItem
-                            postId={this.state.id}
+                            postId={id}
                             _id={com._id}
                             text={com.text}
                             user={com.user}
                             {...com} />
 
-                    ))} */}
+                    ))}
                 </div>
             </div>
         </div>
