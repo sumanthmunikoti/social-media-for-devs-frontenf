@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { API_URL } from "../common/constants";
 import { Link } from 'react-router-dom';
+import NavBarComponent from "../Component/NavBar/NavBarComponent";
 
 export default class ProfilesContainer extends Component {
 
@@ -24,7 +25,7 @@ export default class ProfilesContainer extends Component {
     render() {
         return (
             <div>
-                Profile
+                <NavBarComponent />
 
                 <div className="row profiles">
                     <div className="col-sm-12">

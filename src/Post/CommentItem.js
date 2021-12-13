@@ -44,7 +44,7 @@ class CommentItem extends Component {
 
                     <div className='post bg-white'>
                         <div>
-                            <h4>{this.state.commentUser?this.state.commentUser.name:<span><i className="fas fa-dizzy"/> <i>User Removed By Admin</i></span> }</h4>
+                            <h4>{this.state.commentUser?this.state.commentUser.name:<span> <i></i></span> }</h4>
                         </div>
                         <div>
                             <p>{this.props.text}</p>
